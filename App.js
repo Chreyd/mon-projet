@@ -1,6 +1,6 @@
 // Exercice 1
 import React, { useState } from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, RefreshControl } from "react-native";
 
 export default function App() {
   const obj = [
@@ -13,6 +13,11 @@ export default function App() {
   ];
 
   const [family, setFamily] = useState(obj);
+  const [invert, setInvert] = useState(false);
+
+  const onRefresh = () => {
+    setInvert(!invert);
+  };
 
   /* 
   Destructuring
@@ -35,7 +40,10 @@ export default function App() {
             </View>
           );
         }}
-        keyExtractor={(item,index) => index.toString()}
+        keyExtractor={(item, index) => index.toString()}
+        horizontal
+        inverted={invert}
+        refreshControl={<RefreshControl onRefresh={onRefresh} />}
       />
 
       {/*       <ScrollView
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
   },
   list: {
     backgroundColor: "deepskyblue",
-    marginVertical: 8,
+    margin: 8,
     justifyContent: "center",
     alignItems: "center",
   },

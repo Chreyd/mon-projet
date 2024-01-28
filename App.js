@@ -1,34 +1,61 @@
 // Exercice 1
 import React, { useState } from "react";
-import { StyleSheet, View, Text, FlatList, RefreshControl } from "react-native";
+import { StyleSheet, View, Text, SectionList } from "react-native";
 
 export default function App() {
   const obj = [
-    { name: "Stan", age: 45 },
-    { name: "Francine", age: 45 },
-    { name: "hayley", age: 18 },
-    { name: "Steve", age: 14 },
-    { name: "Roger", age: 1020 },
-    { name: "Klaus", age: 30 },
+    {
+      role: "Père",
+      data: ["Stan", 45],
+    },
+    {
+      role: "Mère",
+      data: ["Francine", 45],
+    },
+    {
+      role: "Fille",
+      data: ["hayley", 18],
+    },
+    {
+      role: "Fils",
+      data: ["Steve", 14],
+    },
+    {
+      role: "Alien",
+      data: ["Roger", 1020],
+    },
+    {
+      role: "Poisson",
+      data: ["Klaus", 30],
+    },
   ];
 
   const [family, setFamily] = useState(obj);
-  const [invert, setInvert] = useState(false);
-
-  const onRefresh = () => {
-    setInvert(!invert);
-  };
-
-  /* 
-  Destructuring
-
-  const objr ={name: "Stan", age: 45};
-  const {name, age}=obj;
-  */
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <SectionList
+        sections={family}
+        keyExtractor={(item, index) => index.toString()}
+        renderSectionHeader={({section}) => (
+          <View style={styles.list}>
+            <Text style={styles.textList}>
+              {section.role}
+            </Text>
+          </View>
+        )}
+        renderItem={({ item }) => {
+          return (
+            <View >
+              <Text style={styles.textListData}>
+               {item}
+              </Text>
+            </View>
+          );
+        }}
+      />
+
+      {/*       <FlatList
         data={family}
         renderItem={({ item }) => {
           // console.log(item);
@@ -41,28 +68,9 @@ export default function App() {
           );
         }}
         keyExtractor={(item, index) => index.toString()}
-        horizontal
         inverted={invert}
         refreshControl={<RefreshControl onRefresh={onRefresh} />}
-      />
-
-      {/*       <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={onRefresh}
-            colors={["red"]}
-          />
-        }
-      >
-        {family.map((member) => (
-          <View key={member.id} style={styles.list}>
-            <Text style={styles.textList}>
-              Nom: {member.name} | Age: {member.age}
-            </Text>
-          </View>
-        ))}
-      </ScrollView> */}
+      /> */}
     </View>
   );
 }
@@ -88,4 +96,11 @@ const styles = StyleSheet.create({
     width: 350,
     textAlign: "center",
   },
+  textListData:{
+    color: 'grey',
+    padding: 9,
+    fontSize: 19,
+    textAlign: "center",
+
+  }
 });

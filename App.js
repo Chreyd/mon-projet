@@ -1,6 +1,13 @@
 // Exercice 1
 import React, { useState } from "react";
-import { StyleSheet, View, ScrollView, Text, RefreshControl } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Text,
+  RefreshControl,
+  Alert,
+} from "react-native";
 
 export default function App() {
   const obj = [
@@ -14,23 +21,37 @@ export default function App() {
 
   const [family, setFamily] = useState(obj);
 
+  const [refresh, setRefresh] = useState(false);
+
+  const onRefresh = () => {
+    setRefresh(true);
+    Alert.alert("info", "Lalise a été rafréchie!", [
+      {
+        text: "ok",
+        onPress: () => console.warn("Lalise a été rafréchie!"),
+        style: "cancel",
+      },
+    ]
+    );
+    setRefresh(false);
+  };
+
   return (
-    
     <View style={styles.container}>
-      <ScrollView refreshControl={
-        <RefreshControl/>
-      } >
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
+        }
+      >
         {family.map((member) => (
-          
           <View key={member.id} style={styles.list}>
-            <Text  style={styles.textList}>
+            <Text style={styles.textList}>
               Nom: {member.name} | Age: {member.age}
             </Text>
           </View>
         ))}
-        </ScrollView>
+      </ScrollView>
     </View>
-
   );
 }
 
@@ -42,18 +63,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginTop: 20,
   },
-  list:{
-    backgroundColor:"deepskyblue",
+  list: {
+    backgroundColor: "deepskyblue",
     marginVertical: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-textList:{
-  color: "#fff",
-  padding: 6,
-  fontSize: 40,
-  width: 350,  
-  textAlign: 'center'
-}
-,
+  textList: {
+    color: "#fff",
+    padding: 6,
+    fontSize: 40,
+    width: 350,
+    textAlign: "center",
+  },
 });

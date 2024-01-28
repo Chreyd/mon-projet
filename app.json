@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "18696e40-bc47-43b8-93d3-1f7686addfce"
+      }
+    },
+    "owner": "chreyd"
   }
 }

@@ -28,7 +28,7 @@ export default function App() {
     Alert.alert("info", "Lalise a été rafréchie!", [
       {
         text: "ok",
-        onPress: () => console.warn("Lalise a été rafréchie!"),
+        // onPress: () => console.warn("Lalise a été rafréchie!"),
         style: "cancel",
       },
     ]
@@ -40,7 +40,7 @@ export default function App() {
     <View style={styles.container}>
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
+          <RefreshControl refreshing={refresh} onRefresh={onRefresh} colors={['red']} />
         }
       >
         {family.map((member) => (

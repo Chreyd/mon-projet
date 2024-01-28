@@ -15,8 +15,11 @@ export default function App() {
   const [family, setFamily] = useState(obj);
 
   return (
+    
     <View style={styles.container}>
+      
         {family.map((member) => (
+          
           <View key={member.id} style={styles.list}>
             <Text  style={styles.textList}>
               Nom: {member.name} | Age: {member.age}
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
   list:{
     backgroundColor:"deepskyblue",

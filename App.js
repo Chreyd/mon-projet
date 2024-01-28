@@ -1,13 +1,6 @@
 // Exercice 1
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Text,
-  RefreshControl,
-  Alert,
-} from "react-native";
+import { StyleSheet, View, Text, FlatList } from "react-native";
 
 export default function App() {
   const obj = [
@@ -21,26 +14,37 @@ export default function App() {
 
   const [family, setFamily] = useState(obj);
 
-  const [refresh, setRefresh] = useState(false);
+  /* 
+  Destructuring
 
-  const onRefresh = () => {
-    setRefresh(true);
-    Alert.alert("info", "Lalise a été rafréchie!", [
-      {
-        text: "ok",
-        // onPress: () => console.warn("Lalise a été rafréchie!"),
-        style: "cancel",
-      },
-    ]
-    );
-    setRefresh(false);
-  };
+  const objr ={name: "Stan", age: 45};
+  const {name, age}=obj;
+  */
 
   return (
     <View style={styles.container}>
-      <ScrollView
+      <FlatList
+        data={family}
+        renderItem={( {item} ) => {
+          console.log(item);
+          return (
+            <View style={styles.list}>
+              <Text style={styles.textList}>
+                Nom: {item.name} | Age: {item.age}
+              </Text>
+            </View>
+          );
+        }}
+        keyExtractor={(item) => item.id}
+      />
+
+      {/*       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={refresh} onRefresh={onRefresh} colors={['red']} />
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={onRefresh}
+            colors={["red"]}
+          />
         }
       >
         {family.map((member) => (
@@ -50,7 +54,7 @@ export default function App() {
             </Text>
           </View>
         ))}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }

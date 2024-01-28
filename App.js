@@ -17,7 +17,7 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      
+      <ScrollView>
         {family.map((member) => (
           
           <View key={member.id} style={styles.list}>
@@ -26,7 +26,9 @@ export default function App() {
             </Text>
           </View>
         ))}
+        </ScrollView>
     </View>
+
   );
 }
 
@@ -43,12 +45,11 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1
   },
 textList:{
   color: "#fff",
   padding: 6,
-  fontSize: 20,
+  fontSize: 40,
   width: 350,  
   textAlign: 'center'
 }

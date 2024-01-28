@@ -1,6 +1,6 @@
 // Exercice 1
 import React, { useState } from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text, RefreshControl } from "react-native";
 
 export default function App() {
   const obj = [
@@ -17,7 +17,9 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView refreshControl={
+        <RefreshControl/>
+      } >
         {family.map((member) => (
           
           <View key={member.id} style={styles.list}>

@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     backgroundColor:"deepskyblue",
     marginVertical: 8,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexGrow: 1
   },
 textList:{
   color: "#fff",

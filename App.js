@@ -2,55 +2,26 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, SectionList } from "react-native";
 import Example from "./Example";
-
-
-
-
-
-
-
+import Exemple from "./Exemple";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Example/>
+      {/* <Example/> */}
+      <Exemple/>
     </View>
   );
 }
 
 
 
-
-
-
-
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor:"#f2850d",
     alignItems: "center",
-    justifyContent: "flex-start",
-    marginTop: 20,
-  },
-  list: {
-    backgroundColor: "deepskyblue",
-    margin: 8,
     justifyContent: "center",
-    alignItems: "center",
+    // marginTop: 20,
   },
-  textList: {
-    color: "#fff",
-    padding: 6,
-    fontSize: 40,
-    width: 350,
-    textAlign: "center",
-  },
-  textListData: {
-    color: "grey",
-    padding: 9,
-    fontSize: 19,
-    textAlign: "center",
-  },
+
 });
